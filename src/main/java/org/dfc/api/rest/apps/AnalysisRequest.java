@@ -147,8 +147,8 @@ public class AnalysisRequest {
 			builder.append("outputDir=").append(outputDir).append(", ");
 		}
 		builder.append("createOutputSubdir=").append(createOutputSubdir)
-				.append(", archiveLogs=").append(archiveLogs)
-				.append(", notify=").append(notify).append(", ");
+		.append(", archiveLogs=").append(archiveLogs)
+		.append(", notify=").append(notify).append(", ");
 		builder.append("debug=").append(debug).append("]");
 		return builder.toString();
 	}

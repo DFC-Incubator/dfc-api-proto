@@ -7,6 +7,8 @@
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
+	<context:property-placeholder location="file:///etc/irods-ext/dfc-api.properties" /> 
+
 	<beans:bean id="irodsConnectionManager"
 		class="org.irods.jargon.core.connection.IRODSSimpleProtocolManager"
 		factory-method="instance" init-method="initialize" destroy-method="destroy" />
