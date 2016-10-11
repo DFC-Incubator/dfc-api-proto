@@ -1,4 +1,5 @@
 /**
+ * Configuration of dfc rest services
  * @author Mike Conway - DFC
  *
  */

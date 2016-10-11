@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import org.irods.jargon.rest.commands.AbstractIrodsService;
+import org.dfc.api.rest.framework.AbstractDfcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 @Named
 @Path("/analysisGateway")
-public class AnalysisGatewayService extends AbstractIrodsService {
+public class AnalysisGatewayService extends AbstractDfcService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -44,6 +44,8 @@ public class AnalysisGatewayService extends AbstractIrodsService {
 		if (appId == null || appId.isEmpty()) {
 			throw new IllegalArgumentException("null or empty appId");
 		}
+
+		log.info("launching analysis");
 
 		return new AnalysisResponse();
 	}

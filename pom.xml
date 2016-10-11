@@ -533,7 +533,7 @@
 				<configuration>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<failOnMissingWebXml>true</failOnMissingWebXml>
-					<warName>irods-rest</warName>
+					<warName>dfc-rest</warName>
 				</configuration>
 			</plugin>
 		</plugins>

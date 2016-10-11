@@ -7,7 +7,8 @@
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
-	<context:property-placeholder location="file:///etc/irods-ext/dfc-api.properties" /> 
+	<context:property-placeholder
+		location="file:///etc/irods-ext/dfc-api.properties" />
 
 	<beans:bean id="irodsConnectionManager"
 		class="org.irods.jargon.core.connection.IRODSSimpleProtocolManager"
@@ -25,25 +26,23 @@
 	</beans:bean>
 
 	<beans:bean id="serviceFunctionFactory"
-		class="org.irods.jargon.rest.commands.ServiceFunctionFactoryImpl">
+		class="org.dfc.api.rest.apps.DfcServiceFunctionFactory">
 		<beans:property name="irodsAccessObjectFactory" ref="irodsAccessObjectFactory" />
 		<beans:property name="restConfiguration" ref="restConfiguration" />
+		<beans:property name="dfcRestConfiguration" ref="dfcRestConfiguration" />
 	</beans:bean>
-	
+
+
 	<beans:bean id="irodsCorsFilter" class="org.irods.jargon.rest.auth.IrodsCorsFilter">
-	    <beans:property name="restConfiguration" ref="restConfiguration" />
+		<beans:property name="restConfiguration" ref="restConfiguration" />
 	</beans:bean>
-	
+
 	<beans:bean id="restConfiguration"
-		class="org.irods.jargon.rest.configuration.RestConfiguration">
+		class="org.dfc.api.rest.apps.config.DfcRestConfiguration">
 		<beans:property name="irodsHost" value="${irods.host}" />
 		<beans:property name="irodsPort" value="${irods.port}" />
 		<beans:property name="irodsZone" value="${irods.zone}" />
-		<beans:property name="utilizePackingStreams" value="${utilize.packing.streams}"/>
-		<beans:property name="authType" value="${auth.type}" /> <!--  STANDARD,PAM -->
-		<beans:property name="defaultStorageResource" value="${default.storage.resource}" />
-		<beans:property name="webInterfaceURL"
-			value="${web.interface.url}" />
+		<beans:property name="authType" value="${auth.type}" /> <!-- STANDARD,PAM -->
 		<beans:property name="allowCors" value="true" />
 		<beans:property name="corsAllowCredentials" value="${cors.allow}" />
 		<beans:property name="corsOrigins">
@@ -65,13 +64,18 @@
 				<beans:value>x-requested-by</beans:value>
 			</util:list>
 		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="dfcRestConfiguration"
+		class="org.dfc.api.rest.apps.config.DfcRestConfiguration">
+		<beans:property name="appsBaseUrl" value="${apps.base.url}" />
 
 	</beans:bean>
-	
+
 	<beans:bean id="springFilter" class="org.irods.jargon.rest.auth.BasicAuthFilter">
-         <beans:property name="irodsAccessObjectFactory" ref="irodsAccessObjectFactory" />
-         <beans:property name="restConfiguration" ref="restConfiguration" />
-    </beans:bean>
+		<beans:property name="irodsAccessObjectFactory" ref="irodsAccessObjectFactory" />
+		<beans:property name="restConfiguration" ref="restConfiguration" />
+	</beans:bean>
 
 
 </beans:beans>
