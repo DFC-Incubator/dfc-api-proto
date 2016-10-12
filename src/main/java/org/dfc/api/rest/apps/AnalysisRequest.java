@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 /**
  * Eventually some sort of class hierarchy, for new an App in DE to be run
  *
@@ -59,6 +61,7 @@ public class AnalysisRequest {
 	private boolean debug = false;
 
 	@XmlElement(name = "app_id")
+	@JsonProperty("app_id")
 	public String getAppId() {
 		return appId;
 	}
@@ -86,6 +89,7 @@ public class AnalysisRequest {
 	}
 
 	@XmlElement(name = "output_dir")
+	@JsonProperty("output_dir")
 	public String getOutputDir() {
 		return outputDir;
 	}
@@ -95,6 +99,7 @@ public class AnalysisRequest {
 	}
 
 	@XmlElement(name = "create_output_subdir")
+	@JsonProperty("create_output_subdir")
 	public boolean isCreateOutputSubdir() {
 		return createOutputSubdir;
 	}
@@ -104,6 +109,7 @@ public class AnalysisRequest {
 	}
 
 	@XmlElement(name = "archive_logs")
+	@JsonProperty("archive_logs")
 	public boolean isArchiveLogs() {
 		return archiveLogs;
 	}
@@ -147,8 +153,8 @@ public class AnalysisRequest {
 			builder.append("outputDir=").append(outputDir).append(", ");
 		}
 		builder.append("createOutputSubdir=").append(createOutputSubdir)
-		.append(", archiveLogs=").append(archiveLogs)
-		.append(", notify=").append(notify).append(", ");
+				.append(", archiveLogs=").append(archiveLogs)
+				.append(", notify=").append(notify).append(", ");
 		builder.append("debug=").append(debug).append("]");
 		return builder.toString();
 	}
