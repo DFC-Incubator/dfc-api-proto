@@ -46,7 +46,6 @@ public class AnalysisGatewayService extends AbstractDfcService {
 		}
 
 		log.info("launching analysis");
-
 		return new AnalysisResponse();
 	}
 

@@ -1,0 +1,66 @@
+swagger: "2.0"
+info:
+  description: |
+    DFC service API layer and gateway to iRODS/DE services
+
+  version: "1.0.0"
+  title: DFC Service API
+  contact:
+    name: michael_conway@unc.edu
+host: datafed.org
+basePath: /v1
+schemes:
+  - https
+paths:
+  /analysis:
+    post:
+      tags:
+        - apps
+      summary: Launch an analysis through the gateway
+      description: ""
+      operationId: launchAnalysis
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: body
+          description: Analysis request specifying operation and parameters
+          required: true
+          schema:
+            $ref: "#/definitions/AnalysisRequest"
+      responses:
+        "405":
+          description: Invalid input
+definitions:
+  AnalysisRequest:
+    type: object
+    properties:
+      appId:
+        type: string
+        format: string
+        description: uuid of the app
+      name:
+        type: string
+        description: display name for the app in notifications and in display
+      outputDir:
+        type: string
+        description: target location for staging of outputs
+      createOutputSubdir:
+        type: boolean
+        description: indicates whether a separate subdirectory should be created to hold the output
+      archiveLogs:
+        type: boolean
+        description: indicates whether log files should be staged back as output
+      debug:
+        type: boolean
+        description: whether to add debug info to the app
+      config:
+        type: object
+        additionalProperties: 
+          type: string
+
+    
