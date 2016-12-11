@@ -26,4 +26,22 @@ public class DeAnalysisConnectorTest {
 		Assert.assertNotNull("null response", response);
 
 	}
+
+	@Test
+	public void testLaunchAnalysisHydro() throws Exception {
+		DfcRestConfiguration conf = new DfcRestConfiguration();
+		conf.setAppsBaseUrl("dfc-de-svcs.edc.renci.org:5007");
+		DeAnalysisConnector connector = new DeAnalysisConnector();
+		connector.setDfcRestConfiguration(conf);
+		AnalysisRequest request = new AnalysisRequest();
+		request.setAppId("7d7e10a6-bd84-11e6-bbcf-005056a2d298");
+		request.setName("VIC Flow launched as Hydroshare service");
+		request.setOutputDir("/dfc1/home/testde2/analyses");
+		request.getConfig()
+				.put("7d7e55ac-bd84-11e6-bbcf-005056a2d298_7d7f059c-bd84-11e6-bbcf-005056a2d298",
+						"/dfc1/home/testde2/hydro");
+		AnalysisResponse response = connector.launchAnalysis(request);
+		Assert.assertNotNull("null response", response);
+
+	}
 }
